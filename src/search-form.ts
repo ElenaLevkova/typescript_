@@ -1,33 +1,15 @@
 
 import { renderBlock } from './lib.js'
+import { getCheckDates } from './check-date.js'
 
-export function renderSearchFormBlock (dateIn: string, dateOut: string) {
-  let today = new Date()
-  const checkInDateMin = makeDate(today.getFullYear(), (today.getMonth() + 1 ), today.getDate())
-  
-  today.setDate(today.getDate() + 1)
-  const nextDateNow = makeDate(today.getFullYear(), (today.getMonth() + 1 ), today.getDate())
-  const checkInDate = dateIn ? dateIn : nextDateNow
-
-  today.setDate(today.getDate() + 2)
-  const dateNowOut = makeDate(today.getFullYear(), (today.getMonth() + 1 ), today.getDate())
-  const checkOutDate = dateOut ? dateOut : dateNowOut
-  
-  today = new Date()
-  today.setMonth(today.getMonth() + 2)
-  today.setDate(0)
-  const checkInDateMax = makeDate(today.getFullYear(), (today.getMonth() + 1 ), today.getDate())
-
-  // console.log(dateNow, checkInDate, checkOutDate, checkInDateMax,lastMonth,lastDayOfMonth, zeroPlus(lastDayOfMonth))
-
-  function makeDate (year, month, day) {
-    return year.toString() + '-' + zeroPlus(month.toString()) + '-' + zeroPlus(day.toString())
-  }
-
-  function zeroPlus (value) {
-    if (+value < 10) return value = '0'+ value
-    else return value
-  }
+export function renderSearchFormBlock (dateIn?: string, dateOut?: string) {
+  const {
+    checkInDateMin,
+    checkInDate,
+    checkOutDate,
+    checkInDateMax,
+    nextDateNow
+  } = getCheckDates (dateIn, dateOut)
 
   renderBlock(
     'search-form-block',
@@ -59,7 +41,7 @@ export function renderSearchFormBlock (dateIn: string, dateOut: string) {
             <input id="max-price" type="text" value="" name="price" class="max-price" />
           </div>
           <div>
-            <div><button>Найти</button></div>
+            <div><button id="btn-search">Найти</button></div>
           </div>
         </div>
       </fieldset>
@@ -67,3 +49,4 @@ export function renderSearchFormBlock (dateIn: string, dateOut: string) {
     `
   )
 }
+
