@@ -24,12 +24,14 @@ export function renderEmptyOrErrorSearchBlock (reasonMessage) {
   )
 }
 
-export function renderSearchResultsBlock () {
+export function renderSearchResultsBlock (PlacesArray) {
+  console.log('renderSearchResultsBlock', PlacesArray)
   renderBlock(
     'search-results-block',
     `
     <div class="search-results-header">
         <p>Результаты поиска</p>
+        PlacesArray: ${PlacesArray}
         <div class="search-results-filter">
             <span><i class="icon icon-filter"></i> Сортировать:</span>
             <select>

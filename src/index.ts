@@ -3,8 +3,10 @@ import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
 import { getUserData, getFavoritesAmount, User } from './get-function-from-localstore.js'
-import { getAttr, search, callback } from './search.js'
+import { getAttr, search } from './search.js'
+import { callback } from './get-todos.js'
 import { makeDate } from './check-date.js'
+import { renderBlock } from './lib.js'
 
 window.addEventListener('DOMContentLoaded', () => {
   const userData: User = getUserData()
@@ -29,6 +31,11 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const button = document.getElementById('btn-search')
-  button?.addEventListener('click', (event) =>  search(getAttr(event), callback))
+  button?.addEventListener('click', (event) =>  {
+    renderBlock('search-results-block','')
+    renderBlock('search-todo-results-block','')
+    event.preventDefault()
+    search(getAttr(), callback)
+  })
   
 })  

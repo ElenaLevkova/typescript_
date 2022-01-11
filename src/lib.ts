@@ -1,5 +1,6 @@
 export function renderBlock (elementId, html) {
   const element = document.getElementById(elementId)
+  console.log('elementId', elementId, element)
   element.innerHTML = html
 }
 
