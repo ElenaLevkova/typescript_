@@ -40,9 +40,16 @@ export function renderSearchFormBlock (dateIn?: string, dateOut?: string) {
             <label for="max-price">Макс. цена суток</label>
             <input id="max-price" type="text" value="" name="price" class="max-price" />
           </div>
+          
           <div>
             <div><button id="btn-search">Найти</button></div>
           </div>
+        </div>
+        <div class="row">
+        <div>
+          <label for="count-record">Кол-во записей Todo</label>
+          <input id="count-record" type="number" value="" name="count-record" class="count-record" />
+        </div>
         </div>
       </fieldset>
     </form>
