@@ -9,20 +9,21 @@ export interface Todos {
   title :string
   completed: boolean
 }
-export interface TodosArray {
-    [index: number]: Todos
+export interface TodosArray extends Array<Todos>{
+  [index: number]: Todos
 }
+
 
 export  interface ICallback {
     (error?: Error, data?: TodosArray | PlacesArray, searchData?: SearchFormData): void
   }
 
-export const callback: ICallback = (error, dataArray, searchData) => {
-  if (error == null && dataArray != null) {
+export const callback: ICallback = (error: Error | undefined, dataArray: TodosArray | PlacesArray | undefined, searchData: SearchFormData | undefined) => {
+  if (error == null && dataArray != null && searchData != undefined) {
     if (searchData.countRecord) {
-      renderSearchResultsBlockTodos(dataArray)
+      renderSearchResultsBlockTodos(dataArray as Array<Todos>)
     } else {
-      renderSearchResultsBlock(dataArray)
+      renderSearchResultsBlock(dataArray as PlacesArray)
     }
   } else {
     console.error('Fail', error)
@@ -31,7 +32,7 @@ export const callback: ICallback = (error, dataArray, searchData) => {
 }
   
 
-export async function getTodosByCount(count): Promise<TodosArray> {
+export async function getTodosByCount(count: number): Promise<TodosArray> {
   const response = await fetch('https://jsonplaceholder.typicode.com/todos/')
   const data = await response.json()
   

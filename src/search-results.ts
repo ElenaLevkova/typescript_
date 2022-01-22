@@ -1,4 +1,5 @@
 import { renderBlock } from './lib.js'
+import { PlacesArray } from './get-places.js'
 
 export function renderSearchStubBlock () {
   renderBlock(
@@ -12,7 +13,7 @@ export function renderSearchStubBlock () {
   )
 }
 
-export function renderEmptyOrErrorSearchBlock (reasonMessage) {
+export function renderEmptyOrErrorSearchBlock (reasonMessage: string) {
   renderBlock(
     'search-results-block',
     `
@@ -24,7 +25,7 @@ export function renderEmptyOrErrorSearchBlock (reasonMessage) {
   )
 }
 
-export function renderSearchResultsBlock (PlacesArray) {
+export function renderSearchResultsBlock (PlacesArray: PlacesArray) {
   console.log('renderSearchResultsBlock', PlacesArray)
   renderBlock(
     'search-results-block',

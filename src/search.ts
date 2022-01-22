@@ -25,7 +25,7 @@ export function getAttr(): SearchFormData  {
   return searchData
 }
 
-const wait = (ms) => new Promise(res => setTimeout(res, ms));
+const wait = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 async function startAsync (searchData: SearchFormData) {
   if (searchData.countRecord) {
@@ -49,7 +49,7 @@ async function startAsync (searchData: SearchFormData) {
 export  async function search (searchData: SearchFormData, callback: ICallback) {
   try {
     const res = await startAsync(searchData) 
-    callback(null, res, searchData)
+    callback(undefined, res, searchData)
   }
   catch (err) {
     callback(err)

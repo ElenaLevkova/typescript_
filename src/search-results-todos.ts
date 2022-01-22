@@ -1,6 +1,7 @@
 import { renderBlock } from './lib.js'
+import { TodosArray } from './get-todos.js'
 
-export function renderEmptyOrErrorSearchBlockTodos (reasonMessage) {
+export function renderEmptyOrErrorSearchBlockTodos (reasonMessage: string) {
   renderBlock(
     'search-todo-results-block',
     `
@@ -12,8 +13,8 @@ export function renderEmptyOrErrorSearchBlockTodos (reasonMessage) {
   )
 }
 
-export function renderSearchResultsBlockTodos (TodosArray) {
-  const TodosStr = TodosArray.reduce(function(str, todo) {
+export function renderSearchResultsBlockTodos (TodosArray: TodosArray ) {
+  const TodosStr = TodosArray.reduce(function(str: string, todo) {
     return str = str + `
       <li class="result">
         userId = ${todo.userId}

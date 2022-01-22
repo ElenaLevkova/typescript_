@@ -24,11 +24,11 @@ export function getCheckDates (dateIn?: string, dateOut?: string) {
   }
 }  
 
-export function makeDate (year, month, day) {
+export function makeDate (year: number, month: number, day: number): string {
   return year.toString() + '-' + zeroPlus(month.toString()) + '-' + zeroPlus(day.toString())
 }
   
-function zeroPlus (value) {
+function zeroPlus (value: string) {
   if (+value < 10) return value = '0'+ value
   else return value
 }
