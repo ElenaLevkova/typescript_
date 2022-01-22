@@ -8,10 +8,15 @@ const initUser: User = {
 
 localStorage.setItem('user', JSON.stringify(initUser))
 
-export function getUserData() {
-  const usertmp: unknown = JSON.parse(localStorage.getItem('user'))
-  const userValid = usertmp as User
-  return userValid
+export function getUserData(): User | undefined {
+  const u: string | null = localStorage.getItem('user')
+  if (u != null) {
+    const usertmp: unknown = JSON.parse(u as string)
+    const userValid = usertmp as User
+    return userValid
+  }
+  return undefined
+
 }
 
 localStorage.setItem('favoritesAmount', '3')

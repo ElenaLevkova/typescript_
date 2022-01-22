@@ -9,8 +9,10 @@ import { makeDate } from './check-date.js'
 import { renderBlock } from './lib.js'
 
 window.addEventListener('DOMContentLoaded', () => {
-  const userData: User = getUserData()
-  renderUserBlock(userData.userName, userData.avatarUrl, getFavoritesAmount())
+  const userData: User | undefined = getUserData()
+  if (userData != undefined) {
+    renderUserBlock(userData.userName, userData.avatarUrl, getFavoritesAmount())
+  }
   renderSearchFormBlock()
   renderSearchStubBlock()
   renderToast(
@@ -18,11 +20,13 @@ window.addEventListener('DOMContentLoaded', () => {
     {name: 'Понял', handler: () => {console.log('Уведомление закрыто')}}
   )
 
-  const inpCheckInDate = (document.getElementById('check-in-date'))
+  const inpCheckInDate: HTMLElement | null = (document.getElementById('check-in-date'))
   const inpCheckOutDate = (document.getElementById('check-out-date')  as HTMLInputElement)
-  inpCheckInDate.addEventListener('input', (event) => getOutDate(event) )
-
-  function getOutDate(event): void {
+  if (inpCheckInDate  != undefined) {
+    inpCheckInDate.addEventListener('input', (event) => getOutDate(event) )
+  }
+  
+  function getOutDate(event: Event): void {
     event.preventDefault
     const day: Date = new Date((inpCheckInDate  as HTMLInputElement).value )
     day.setDate(day.getDate() + 2)

@@ -1,14 +1,21 @@
 {
-    "compilerOptions": {
+  "extends": "./tsconfig-checks.json",
+   
+  "compilerOptions": {
         "outDir": "public/scripts",
         "target": "es2015",
         "module": "es2015",
         "moduleResolution": "node",
+        "allowJs": true
         // "allowSyntheticDefaultImports": true
     },
-    "files": [
-        "src/index.ts"
+    // "files": [
+    //     "src/index.ts"
+    // ],
+    "include": [
+      "src/**/*"
     ]
+  
 }
   
   
